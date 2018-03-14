@@ -2,7 +2,7 @@
 # Author: Dr. Scott Heggen      TODO: Change this to your names
 # Username: heggens             TODO: Change this to your usernames
 #
-# Assignment: A7: UPC Bar Codes
+# Assignment: A08: UPC Bar Codes
 #
 # Purpose: Determine how to do some basic operations on lists
 #
@@ -88,7 +88,7 @@ def main():
     print(in_string)
     print(" ".join(reversed_list))
 
-    reverse_list_test_suite()                     # Uncomment this test suite to test the fruitful functions.
+    # reverse_list_test_suite()                     # Uncomment this line to test the fruitful functions.
 
 
 main()

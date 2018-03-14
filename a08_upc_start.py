@@ -2,7 +2,7 @@
 # Author: Dr. Scott Heggen      TODO: Change this to your names
 # Username: heggens             TODO: Change this to your usernames
 #
-# Assignment: A7: UPC Bar Codes
+# Assignment: A08: UPC Bar Codes
 #
 # Purpose: Determine how to do some basic operations on lists
 #
@@ -14,7 +14,6 @@
 # licensed under a Creative Commons
 # Attribution-Noncommercial-Share Alike 3.0 United States License.
 ####################################################################################
-
 
 
 def is_valid_input(barcode):
