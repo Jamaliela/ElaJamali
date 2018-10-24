@@ -2,7 +2,7 @@
 # Author: Dr. Scott Heggen      TODO: Change this to your names
 # Username: heggens             TODO: Change this to your usernames
 #
-# Assignment: A08: UPC Bar Codes
+# Assignment: A08: UPC Barcodes
 #
 # Purpose: Determine how to do some basic operations on lists
 #
