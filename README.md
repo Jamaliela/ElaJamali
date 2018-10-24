@@ -1,4 +1,4 @@
-# A08: UPC Bar Codes
+# A08: UPC Barcodes
 
 Name 1: ____________
 
