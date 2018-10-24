@@ -17,8 +17,8 @@ def testit(did_pass):
     print(msg)
 
 
-def a7_test_suite():
+def a08_test_suite():
     testit(is_valid_input("1") == False)
 
 
-a7_test_suite()
+a08_test_suite()
