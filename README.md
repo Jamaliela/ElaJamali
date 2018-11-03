@@ -1,11 +1,9 @@
 # A08: UPC Barcodes
 
-Name 1: ____________
+Name 1: Emely Alfaro
 
-Name 2: ____________
+Name 2: Elaheh Jamali
 
-Name 3 (if needed): ____________
+Repository Link: https://github.com/fall-2018-csc-226/a08-upc-barcodes-alfaro-jamali-a08.git
 
-Repository Link: ______________
-
-Google Document Link: ______________
+Google Document Link: https://docs.google.com/document/d/1tcWHmqC13Xh_V2S0lZd5eCAs9PolGatA3WPh5zJSo68/edit?usp=sharing
