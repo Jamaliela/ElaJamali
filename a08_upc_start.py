@@ -102,19 +102,16 @@ def drawing_blackline_long(t):
     :return: None. Void
     """
     t.color("black")                            # setting the color of the turtle to be black
-    t.begin_fill()
     # t.right(250)
     # t.forward(248)
     # t.left(90)
     # beginning to fill with the turtle
+    t.begin_fill()
     for i in range(2):                          # for loop to run twice
         t.forward(2)                            # turtle t moves forward by 2
-        t.left(250)                              # turtle t turns 90 degrees left to go up
-        t.forward(248)                          # turtle t goes forward 248 up
-        t.left(90)                              # turtle t turns 90 degrees left again
-        t.forward(2)                            # turtle t moves forward by 2
         t.left(90)                              # turtle t turns 90 degrees left to go up
-        t.forward(248)                          # turtle t goes forward 248 up
+        t.forward(240)                          # turtle t goes forward 200 up
+        t.left(90)                              # turtle t turns 90 degrees left again
     t.end_fill()                                # finishing the filling of t
     t.forward(2)                                # moving to the right by 2 without leaving a trace
 
@@ -145,19 +142,14 @@ def drawing_white_line_long(t):
     """
     t.color("white")                            # setting the color of the turtle to be black
                                   # beginning to fill with the turtle
-    t.right(90)
-    t.forward(48)
-    t.left(90)
     t.begin_fill()
     for i in range(2):                          # for loop to run twice
-        t.forward(2)                                # moving to the right by 2
+        t.forward(2)                            # turtle t moves forward by 2
         t.left(90)                              # turtle t turns 90 degrees left to go up
-        t.forward(248)                          # turtle t goes forward 248 up
-        t.left(90)
+        t.forward(240)                          # turtle t goes forward 200 up
+        t.left(90)                              # turtle t turns 90 degrees left again
     t.end_fill()                                # finishing the filling of t
     t.forward(2)                                # moving to the right by 2 without leaving a trace
-
-
 
 def main():
     """
@@ -179,15 +171,15 @@ def main():
     t.speed(0)                                  # setting up speed to go faster
     left, right = translate(input_code)         # calling the two return variables from the translate function
 
-    # guard_left = ["1", "0", "1"]
-    # for i in guard_left:
-    #     if i == "0":
-    #         drawing_white_line_long(t)
-    #     else:
-    #         drawing_blackline_long(t)
+    guard_left = ["1", "0", "1"]
+    for i in guard_left:
+        if i == "0":
+            drawing_white_line_long(t)
+        else:
+            drawing_blackline_long(t)
 
-    drawing_white_line_long(t)
-
+    t.penup()                                   # putting the pen up to start moving
+    t.setpos(-240, -60)                        # setting the left side position
 
     for i in range(len(left)):                  # for loop to run in the len of the first 6 elements retrieved for the left side
         for j in left[i]:                       # nested for loop to run in the first 6-digit binary element inside the left side list
@@ -196,7 +188,19 @@ def main():
             else:
                 drawing_blackline(t)            # if it is anything else a black line is drawn
 
-    #center
+
+    t.penup()                                   # putting the pen up to start moving
+    t.setpos(-150, -100)                        # setting the left side position
+
+    guard_center = ["0", "1", "0", "1","0"]
+    for i in guard_center:
+        if i == "0":
+            drawing_white_line_long(t)
+        else:
+            drawing_blackline_long(t)
+
+    t.penup()                                   # putting the pen up to start moving
+    t.setpos(-140, -60)                        # setting the left side position
 
     for i in range(len(right)):                 # for loop # for loop to run in the len of the first 6 elements retrieved for the center side
         for j in right[i]:                      # nested for loop to run in the first 6-digit binary element inside the center side list
@@ -205,6 +209,16 @@ def main():
                 drawing_white_line(t)           # a white line is drawn
             else:
                 drawing_blackline(t)            # if it is anything else a black line is drawn
+
+    t.penup()                                   # putting the pen up to start moving
+    t.setpos(-60, -100)                        # setting the left side position
+
+    guard_center = ["1", "0", "1"]
+    for i in guard_center:
+        if i == "0":
+            drawing_white_line_long(t)
+        else:
+            drawing_blackline_long(t)
 
     #right guard
     # t.setpos(-150, -150)
