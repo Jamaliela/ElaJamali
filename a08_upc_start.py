@@ -171,6 +171,12 @@ def main():
     t.speed(0)                                  # setting up speed to go faster
     left, right = translate(input_code)         # calling the two return variables from the translate function
 
+    # t.penup()                                   # putting the pen up to start moving
+    # t.setpos(-270, -100)                        # setting the left side position
+    # t.color("black")
+    # t.pensize(20)
+    # t.write(input_code[0], move=False, align="center", font=("Arial", 15, "normal"))
+
     guard_left = ["1", "0", "1"]
     for i in guard_left:
         if i == "0":
@@ -220,8 +226,10 @@ def main():
         else:
             drawing_blackline_long(t)
 
-    #right guard
-    # t.setpos(-150, -150)
+
+    # writing bar code
+    # t.penup()                                   # putting the pen up to start moving
+    # t.setpos(-270, -100)                        # setting the left side position
     # t.color("black")
     # t.pensize(20)
     # t.write(input_code, move=False, align="center", font=("Arial", 15, "normal"))
