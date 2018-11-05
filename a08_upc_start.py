@@ -103,21 +103,14 @@ def drawing_blackline_long(t):
     """
     t.color("black")                            # setting the color of the turtle to be black
     t.begin_fill()
-    # t.right(250)
-    # t.forward(248)
-    # t.left(90)
-    # beginning to fill with the turtle
+
     for i in range(2):                          # for loop to run twice
-        t.forward(2)                            # turtle t moves forward by 2
-        t.left(250)                              # turtle t turns 90 degrees left to go up
-        t.forward(248)                          # turtle t goes forward 248 up
-        t.left(90)                              # turtle t turns 90 degrees left again
         t.forward(2)                            # turtle t moves forward by 2
         t.left(90)                              # turtle t turns 90 degrees left to go up
         t.forward(248)                          # turtle t goes forward 248 up
+        t.left(90)                              # turtle t turns 90 degrees left again
     t.end_fill()                                # finishing the filling of t
     t.forward(2)                                # moving to the right by 2 without leaving a trace
-
 
 
 def drawing_white_line(t):
@@ -143,11 +136,7 @@ def drawing_white_line_long(t):
     :param t: turtle object t to draw the while lines for guard and center
     :return: none. Void function .
     """
-    t.color("white")                            # setting the color of the turtle to be black
-                                  # beginning to fill with the turtle
-    t.right(90)
-    t.forward(48)
-    t.left(90)
+    t.color("black")                            # setting the color of the turtle to be black
     t.begin_fill()
     for i in range(2):                          # for loop to run twice
         t.forward(2)                                # moving to the right by 2
@@ -156,7 +145,6 @@ def drawing_white_line_long(t):
         t.left(90)
     t.end_fill()                                # finishing the filling of t
     t.forward(2)                                # moving to the right by 2 without leaving a trace
-
 
 
 def main():
@@ -173,21 +161,20 @@ def main():
         # TODO turtle draw code
     t = turtle.Turtle()                         # creating the turtle
     t.hideturtle()                              # hiding turtle to move its position
-    wn = turtle.Screen()                        # setting up the turtle screen
+    wn = turtle.Screen()
+    t.speed(10)
     t.penup()                                   # putting the pen up to start moving
-    t.setpos(-250, -100)                        # setting the left side position
-    t.speed(0)                                  # setting up speed to go faster
+    t.setpos(-250, -100)                        # setting the left side position                                  # setting up speed to go faster
     left, right = translate(input_code)         # calling the two return variables from the translate function
 
-    # guard_left = ["1", "0", "1"]
-    # for i in guard_left:
-    #     if i == "0":
-    #         drawing_white_line_long(t)
-    #     else:
-    #         drawing_blackline_long(t)
+    guard_left = ["1", "0", "1"]
+    for i in guard_left:
+        if i == "0":
+            drawing_white_line_long(t)
+        else:
+            drawing_blackline_long(t)
 
-    drawing_white_line_long(t)
-
+    t.setpos(-244, -52)
 
     for i in range(len(left)):                  # for loop to run in the len of the first 6 elements retrieved for the left side
         for j in left[i]:                       # nested for loop to run in the first 6-digit binary element inside the left side list
@@ -195,9 +182,15 @@ def main():
                 drawing_white_line(t)           # a white line is drawn
             else:
                 drawing_blackline(t)            # if it is anything else a black line is drawn
-
-    #center
-
+    t.setpos(-160, -100)
+    # #center
+    guard_center = ["0", "1", "0", "1", "0"]
+    for i in guard_center:
+        if i == "0":
+            drawing_white_line_long(t)
+        else:
+            drawing_blackline_long(t)
+    t.setpos(-150, -52)
     for i in range(len(right)):                 # for loop # for loop to run in the len of the first 6 elements retrieved for the center side
         for j in right[i]:                      # nested for loop to run in the first 6-digit binary element inside the center side list
             print(j)                            # if the element is zero then
@@ -205,8 +198,15 @@ def main():
                 drawing_white_line(t)           # a white line is drawn
             else:
                 drawing_blackline(t)            # if it is anything else a black line is drawn
-
+    t.setpos(8, -100)
     #right guard
+    guard_left = ["1", "0", "1"]
+    for i in guard_left:
+        if i == "0":
+            drawing_white_line_long(t)
+        else:
+            drawing_blackline_long(t)
+
     # t.setpos(-150, -150)
     # t.color("black")
     # t.pensize(20)
