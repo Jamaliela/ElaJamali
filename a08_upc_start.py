@@ -136,7 +136,7 @@ def drawing_white_line_long(t):
     :param t: turtle object t to draw the while lines for guard and center
     :return: none. Void function .
     """
-    t.color("black")                            # setting the color of the turtle to be black
+    t.color("white")                            # setting the color of the turtle to be black
     t.begin_fill()
     for i in range(2):                          # for loop to run twice
         t.forward(2)                                # moving to the right by 2
@@ -198,7 +198,7 @@ def main():
                 drawing_white_line(t)           # a white line is drawn
             else:
                 drawing_blackline(t)            # if it is anything else a black line is drawn
-    t.setpos(8, -100)
+    t.setpos(-66, -100)
     #right guard
     guard_left = ["1", "0", "1"]
     for i in guard_left:
