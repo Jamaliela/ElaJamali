@@ -62,10 +62,6 @@ def translate(barcode):
     """
     leftside = ['0001101', '0011001', '0010011', '0111101', '0100011', '0110001', '0101111', '0111011', '0110111', '0001011']  # creating a list with all the elements from the left side table.
     rightside = ['1110010','1100110','1101100','1000010','1011100','1001110','1010000','1000100','1001000','1110100']          # # creating a list with all the elements from the right side table.
-
-    # 722868
-
-
     barcode = list(barcode)                     # making the barcode a list
     leftl = []                                  # creating an empty list to go through the first 6 elements of barcode
     for i in barcode[0:6]:                      # for loop to run in the first 6 elements
@@ -161,14 +157,14 @@ def main():
     # TODO turtle draw code
     t = turtle.Turtle()                         # creating the turtle
     t.hideturtle()                              # hiding turtle to move its position
-    wn = turtle.Screen()
-    t.speed(10)
+    wn = turtle.Screen()                        # creating the turtle screen
+    t.speed(0)                                  # setting the speed of the turtle
     t.penup()                                   # putting the pen up to start moving
-    t.setpos(-250, -100)                        # setting the left side position                                  # setting up speed to go faster
+    t.setpos(-250, -100)                        # setting the left side position
     left, right = translate(input_code)         # calling the two return variables from the translate function
 
     if is_valid_modulo(input_code) != int(input_code[11]):       # if function run the module check character in the barcode
-        t.write("Wrong barcode.", move=False, align="left", font=("Arial", 15, "normal"))
+        t.write("Wrong barcode.", move=False, align="left", font=("Arial", 15, "normal"))       # writing the text when the barcode doesnt exist
 
     else:
         guard_left = ["1", "0", "1"]
@@ -178,7 +174,7 @@ def main():
         else:
             drawing_blackline_long(t)
 
-        t.setpos(-244, -52)
+        t.setpos(-244, -52)                         # setting the position
 
         for i in range(len(left)):                  # for loop to run in the len of the first 6 elements retrieved for the left side
             for j in left[i]:                       # nested for loop to run in the first 6-digit binary element inside the left side list
@@ -186,7 +182,7 @@ def main():
                     drawing_white_line(t)           # a white line is drawn
                 else:
                     drawing_blackline(t)            # if it is anything else a black line is drawn
-        t.setpos(-160, -100)
+        t.setpos(-160, -100)                        # setting the position
 
     # center
         guard_center = ["0", "1", "0", "1", "0"]
@@ -195,7 +191,7 @@ def main():
                 drawing_white_line_long(t)
             else:
                 drawing_blackline_long(t)
-        t.setpos(-150, -52)
+        t.setpos(-150, -52)                         # setting the position
         for i in range(len(right)):                 # for loop # for loop to run in the len of the first 6 elements retrieved for the center side
             for j in right[i]:                      # nested for loop to run in the first 6-digit binary element inside the center side list
                 print(j)                            # if the element is zero then
@@ -203,21 +199,21 @@ def main():
                     drawing_white_line(t)           # a white line is drawn
                 else:
                     drawing_blackline(t)            # if it is anything else a black line is drawn
-        t.setpos(-66, -100)
+        t.setpos(-66, -100)                         # setting the position
     # right guard
-        guard_left = ["1", "0", "1"]
-        for i in guard_left:
-            if i == "0":
-                drawing_white_line_long(t)
+        guard_left = ["1", "0", "1"]                # creating the list for the left guard
+        for i in guard_left:                        # entering the guard_left list of values
+            if i == "0":                            # if function for drawing
+                drawing_white_line_long(t)          # calling the function drawing_whiteline_long when the number is zero
             else:
-                drawing_blackline_long(t)
+                drawing_blackline_long(t)           # calling the function drawing_blackline_long when the number is one
 
-        t.goto(-260, -100)
-        t.color("black")
-        t.pensize(20)
-        t.write(input_code[0]+ "    "+input_code[1:6]+ "     "+input_code[6:11]+"     "+input_code[11], move=False, align="left", font=("Arial", 15, "normal"))
+        # writing barcode
+        t.goto(-260, -100)              # setting position to write the barcode at the end
+        t.pensize(20)                   # setting the pen size
+        t.write(input_code[0]+ "    "+input_code[1:6]+ "     "+input_code[6:11]+"     "+input_code[11], move=False, align="left", font=("Arial", 15, "normal"))    #writing the barcode and spaces in between
 
-    wn.exitonclick()
+    wn.exitonclick()                        # exiting turtle drawing on click
 
 
 if __name__ == "__main__":
