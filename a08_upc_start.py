@@ -22,10 +22,10 @@ def is_valid_input(barcode):
     :param barcode:  parameter that takes the user's input to check if it is a valid 12 digit or not
     :return: Fruitful. a True or False Boolean value.
     """
-    if int(len(barcode)) == 12:     # checks the user's input to see if it is a valid 12 digit barcode
+    if len(barcode) == 12 and barcode.isnumeric():     # checks the user's input to see if it is a valid 12 digit barcode
         return True                 # true when the barcode is 12 digits
-    else:
-        return False                # returns false when it is not 12 digits input
+
+    return False                # returns false when it is not 12 digits input
 
 
 def is_valid_modulo(barcode):
@@ -37,7 +37,6 @@ def is_valid_modulo(barcode):
     oddnumbers = []                             # creating new list
     for i in range(0,len(barcode),2):           # creating for loop to go through the elements in the barcode starting from the first one (odd) and skipping every other one
         oddnumbers.append(barcode[i])           # appending into the oddnumbers list each of the elements retrieved in the for loop
-    print(oddnumbers)
     oddnumber_sum = sum(map(int,oddnumbers))    # adding all the elements in the list created and using map to make them integers
     oddbythree = int(oddnumber_sum) * 3         # multiplying the oddnumber_sum by three as one of the steps in module check character
 
@@ -45,14 +44,13 @@ def is_valid_modulo(barcode):
     for i in range(1,len(barcode),2):           # for loop to start in the first even element of the barcode and skipping every other one
         evennumbers.append(barcode[i])          # appending the retrieved even numbers into the empty list
     evennumbers = evennumbers[:-1]              # taking out the last even number (module check character)
-    print(evennumbers)
     evennumber_sum = sum(map(int,evennumbers))  # adding all the even numbers after changing them into integers.
     final = oddbythree + evennumber_sum         # adding the result from odd numbers and even numbers to get to the final step
     final = final % 10                          # checking if the final number is divisible by 10 with modulus
     if final is not 0:                          # if function to check if the final digit is not zero
         checkdigit = 10 - final                 # subtracting 10 from the final one when the final is not zero
     else:
-        checkdigit = final                      # if there's no remainder in modulus of final % 10 the final value stays the same
+        checkdigit = final     # if there's no remainder in modulus of final % 10 the final value stays the same
     return checkdigit                           # returning the checkdigit value
 
 
@@ -62,9 +60,12 @@ def translate(barcode):
     :param barcode: taking the barcode from the user's input
     :return: Fruitful. returns leftl and rights values of the lists lefside and rightside
     """
-    leftside = ['0001101', '0011001', '0010011', '0111101', '0100011', '0110001', '0101111', '0111011', '0110111', '0001011']  # creating a list with all the elemnets from the left side table.
-    rightside = ['1110010','1100110','1101100','1000010','1011100','1001110','1010000','1000100','1001000','1110100']          # # creating a list with all the elemnets from the right side table.
-    centerside = ['']
+    leftside = ['0001101', '0011001', '0010011', '0111101', '0100011', '0110001', '0101111', '0111011', '0110111', '0001011']  # creating a list with all the elements from the left side table.
+    rightside = ['1110010','1100110','1101100','1000010','1011100','1001110','1010000','1000100','1001000','1110100']          # # creating a list with all the elements from the right side table.
+
+    # 722868
+
+
     barcode = list(barcode)                     # making the barcode a list
     leftl = []                                  # creating an empty list to go through the first 6 elements of barcode
     for i in barcode[0:6]:                      # for loop to run in the first 6 elements
@@ -75,7 +76,7 @@ def translate(barcode):
     for i in barcode[6:12]:                     # for loop to run in the remainder 6 elements
         rs = rightside[int(i)]                  # getting the first six elements of the list
         rights.append(rs)                       # appending the first 6 elements into the leftl variable
-    return leftl, rights                        # returning both leftl and rights to use them in main for drawing
+    return (leftl, rights)                        # returning both leftl and rights to use them in main for drawing
 
 
 def drawing_blackline(t):
@@ -154,11 +155,10 @@ def main():
     """
     input_code = input("Enter a 12 digit code [0-9]: ")                         # asking user for input of barcode
     while not is_valid_input(input_code):                                       # while loop to check if it is valid
-         input_code = input("Invalid number. Enter a 12 digit code [0-9]: ")    # asking user to input a valid barcode again
-    list(input_code)                                                            # making the barcode a list
-    if is_valid_modulo(input_code):            # if function run the module check character in the barcode
-        print(input_code)
-        # TODO turtle draw code
+        input_code = input("Invalid number. Enter a 12 digit code [0-9]: ")    # asking user to input a valid barcode again
+    list(input_code)  # making the barcode a list
+
+    # TODO turtle draw code
     t = turtle.Turtle()                         # creating the turtle
     t.hideturtle()                              # hiding turtle to move its position
     wn = turtle.Screen()
@@ -167,60 +167,58 @@ def main():
     t.setpos(-250, -100)                        # setting the left side position                                  # setting up speed to go faster
     left, right = translate(input_code)         # calling the two return variables from the translate function
 
-    guard_left = ["1", "0", "1"]
-    for i in guard_left:
-        if i == "0":
-            drawing_white_line_long(t)
+    if is_valid_modulo(input_code) != int(input_code[11]):       # if function run the module check character in the barcode
+        t.write("Wrong barcode.", move=False, align="left", font=("Arial", 15, "normal"))
+
+    else:
+        guard_left = ["1", "0", "1"]
+        for i in guard_left:
+            if i == "0":
+                drawing_white_line_long(t)
         else:
             drawing_blackline_long(t)
 
-    t.setpos(-244, -52)
+        t.setpos(-244, -52)
 
-    for i in range(len(left)):                  # for loop to run in the len of the first 6 elements retrieved for the left side
-        for j in left[i]:                       # nested for loop to run in the first 6-digit binary element inside the left side list
-            if j == "0":                        # if the element is zero then
-                drawing_white_line(t)           # a white line is drawn
+        for i in range(len(left)):                  # for loop to run in the len of the first 6 elements retrieved for the left side
+            for j in left[i]:                       # nested for loop to run in the first 6-digit binary element inside the left side list
+                if j == "0":                        # if the element is zero then
+                    drawing_white_line(t)           # a white line is drawn
+                else:
+                    drawing_blackline(t)            # if it is anything else a black line is drawn
+        t.setpos(-160, -100)
+
+    # center
+        guard_center = ["0", "1", "0", "1", "0"]
+        for i in guard_center:
+            if i == "0":
+                drawing_white_line_long(t)
             else:
-                drawing_blackline(t)            # if it is anything else a black line is drawn
-    t.setpos(-160, -100)
-    # #center
-    guard_center = ["0", "1", "0", "1", "0"]
-    for i in guard_center:
-        if i == "0":
-            drawing_white_line_long(t)
-        else:
-            drawing_blackline_long(t)
-    t.setpos(-150, -52)
-    for i in range(len(right)):                 # for loop # for loop to run in the len of the first 6 elements retrieved for the center side
-        for j in right[i]:                      # nested for loop to run in the first 6-digit binary element inside the center side list
-            print(j)                            # if the element is zero then
-            if j == "0":                        # if the element is zero then
-                drawing_white_line(t)           # a white line is drawn
+                drawing_blackline_long(t)
+        t.setpos(-150, -52)
+        for i in range(len(right)):                 # for loop # for loop to run in the len of the first 6 elements retrieved for the center side
+            for j in right[i]:                      # nested for loop to run in the first 6-digit binary element inside the center side list
+                print(j)                            # if the element is zero then
+                if j == "0":                        # if the element is zero then
+                    drawing_white_line(t)           # a white line is drawn
+                else:
+                    drawing_blackline(t)            # if it is anything else a black line is drawn
+        t.setpos(-66, -100)
+    # right guard
+        guard_left = ["1", "0", "1"]
+        for i in guard_left:
+            if i == "0":
+                drawing_white_line_long(t)
             else:
-                drawing_blackline(t)            # if it is anything else a black line is drawn
-    t.setpos(-66, -100)
-    #right guard
-    guard_left = ["1", "0", "1"]
-    for i in guard_left:
-        if i == "0":
-            drawing_white_line_long(t)
-        else:
-            drawing_blackline_long(t)
+                drawing_blackline_long(t)
 
-    t.goto(-260, -100)
-    t.color("black")
-    t.pensize(20)
-    t.write(input_code[0]+ "    "+input_code[1:6]+ "     "+input_code[6:11]+"     "+input_code[11], move=False, align="left", font=("Arial", 15, "normal"))
-
-
-
-    #     pass
-    # else:
-    #     # TODO turtle draw error message
-    #     pass
-    #
+        t.goto(-260, -100)
+        t.color("black")
+        t.pensize(20)
+        t.write(input_code[0]+ "    "+input_code[1:6]+ "     "+input_code[6:11]+"     "+input_code[11], move=False, align="left", font=("Arial", 15, "normal"))
 
     wn.exitonclick()
+
 
 if __name__ == "__main__":
     main()
