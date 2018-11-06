@@ -207,10 +207,12 @@ def main():
         else:
             drawing_blackline_long(t)
 
-    # t.setpos(-150, -150)
-    # t.color("black")
-    # t.pensize(20)
-    # t.write(input_code, move=False, align="center", font=("Arial", 15, "normal"))
+    t.goto(-260, -100)
+    t.color("black")
+    t.pensize(20)
+    t.write(input_code[0]+ "    "+input_code[1:6]+ "     "+input_code[6:11]+"     "+input_code[11], move=False, align="left", font=("Arial", 15, "normal"))
+
+
 
     #     pass
     # else:

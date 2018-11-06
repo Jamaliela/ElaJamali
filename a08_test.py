@@ -18,7 +18,10 @@ def testit(did_pass):
 
 
 def a08_test_suite():
-    testit(is_valid_input("1") == False)
+    testit(is_valid_input("123456789123") == True)
+    testit(is_valid_input("123") == False)
+
+
 
 
 a08_test_suite()
