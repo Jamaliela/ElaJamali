@@ -16,6 +16,7 @@
 ####################################################################################
 import turtle                       # importing the turtle library
 
+
 def is_valid_input(barcode):
     """
     This function verifies if the barcode is 12 digits and if they are all positive numbers.
@@ -167,12 +168,12 @@ def main():
         t.write("Wrong barcode.", move=False, align="left", font=("Arial", 15, "normal"))       # writing the text when the barcode doesnt exist
 
     else:
-        guard_left = ["1", "0", "1"]
-        for i in guard_left:
-            if i == "0":
+        guard_left = ["1", "0", "1"]                # creating list for left guard
+        for i in guard_left:                        # loop for left guard
+            if i == "0":                            # if function for drawing white lines when i is 0
                 drawing_white_line_long(t)
         else:
-            drawing_blackline_long(t)
+            drawing_blackline_long(t)               # # if function for drawing white lines when i is 0
 
         t.setpos(-244, -52)                         # setting the position
 
@@ -185,12 +186,12 @@ def main():
         t.setpos(-160, -100)                        # setting the position
 
     # center
-        guard_center = ["0", "1", "0", "1", "0"]
-        for i in guard_center:
-            if i == "0":
+        guard_center = ["0", "1", "0", "1", "0"]        # creating list for center guard
+        for i in guard_center:                          # loop for center guard
+            if i == "0":                                 # if function for drawing white lines when i is 0
                 drawing_white_line_long(t)
             else:
-                drawing_blackline_long(t)
+                drawing_blackline_long(t)           # drawing black lines when i is not 0
         t.setpos(-150, -52)                         # setting the position
         for i in range(len(right)):                 # for loop # for loop to run in the len of the first 6 elements retrieved for the center side
             for j in right[i]:                      # nested for loop to run in the first 6-digit binary element inside the center side list
