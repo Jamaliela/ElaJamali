@@ -18,7 +18,28 @@ def testit(did_pass):
 
 
 def a08_test_suite():
-    testit(is_valid_input("1") == False)
+
+    # The following tests test the is_valid_input() function
+    print("Testing is_valid_input()")
+
+    testit(is_valid_input("123456789123") == True)
+    testit(is_valid_input("123") == False)
+
+
+    # The following tests test the is_valid_module() function
+    print("\nTesting is_valid_modulo()")
+
+    testit(is_valid_modulo("311917045597") == 7)
+    testit(is_valid_modulo("044000036935") == 5)
+    testit(is_valid_modulo("722868906224") == 4)
+
+
+    # The following tests test the translate() function
+    print("\nTesting translate()")
+
+    testit(translate("311917045597") == (['0111101','0011001','0011001','0001011','0011001','0111011'],['1110010','1011100','1001110','1001110','1110100','1000100']))
+    testit(translate("044000036935") == (['0001101','0100011','0100011','0001101','0001101','0001101'],['1110010','1000010','1010000','1110100','1000010','1001110']))
+    testit(translate("722868906224") == (['0111011','0010011','0010011','0110111','0101111','0110111'],['1110100','1110010','1010000','1101100','1101100','1011100']))
 
 
 a08_test_suite()
